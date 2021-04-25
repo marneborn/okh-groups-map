@@ -14,11 +14,13 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-json": "^2.1.2",
-    "eslint-plugin-unicorn": "^31.0.0"
+    "eslint-plugin-unicorn": "^31.0.0",
+    "yaml-lint": "^1.2.4"
   },
   "scripts": {
     "build:check": "tsc --noEmit",
     "lint:js": "eslint . --ext .js,.jsh,.jsx,.ts,.tsx",
-    "lint:js:fix": "yarn lint:js --fix"
+    "lint:js:fix": "yarn lint:js --fix",
+    "lint:yaml": "yamllint **/*.yml **/*.yaml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml"
   }
 }
