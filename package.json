@@ -4,5 +4,21 @@
   "main": "index.js",
   "author": "Mikael Arneborn <mikael@arneborn.net>",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-unicorn": "^31.0.0"
+  },
+  "scripts": {
+    "build:check": "tsc --noEmit",
+    "lint:js": "eslint . --ext .js,.jsh,.jsx,.ts,.tsx",
+    "lint:js:fix": "yarn lint:js --fix"
+  }
 }
