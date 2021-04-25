@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build:check": "tsc --noEmit",
+    "lint": "ERROR_STATUS=0 ; yarn lint:js || ERROR_STATUS=$? ; yarn lint:yaml || ERROR_STATUS=$? ;echo \"=========\"; exit $ERROR_STATUS",
     "lint:js": "eslint . --ext .js,.jsh,.jsx,.ts,.tsx",
     "lint:js:fix": "yarn lint:js --fix",
     "lint:yaml": "yamllint **/*.yml **/*.yaml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml"
