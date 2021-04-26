@@ -1,6 +1,6 @@
 import express from 'express';
 
-import logger from '../lib/logger'
+import logger from '../lib/logger';
 import routing from './routing';
 
 const app = express();

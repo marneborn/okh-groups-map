@@ -12,4 +12,36 @@ parserOptions:
 plugins:
   - '@typescript-eslint'
   - unicorn
-rules: {}
+settings:
+  import/resolver:
+    node:
+      extensions:
+      - ".ts"
+      moduleDirectory:
+      - node_modules
+      - app/
+rules:
+  import/extensions:
+    - error
+    - ignorePackages
+    - js: never
+      ts: never
+  max-len:
+    - error
+    - code: 120
+      tabWidth: 2
+      ignoreComments: true
+      ignoreTrailingComments: true
+      ignoreStrings: true
+      ignoreTemplateLiterals: true
+  unicorn/no-array-callback-reference:
+    - off
+  unicorn/no-array-for-each:
+    - off
+  unicorn/no-array-reduce:
+    - off
+  unicorn/no-null:
+    - off
+  unicorn/prefer-module:
+    - off
+
