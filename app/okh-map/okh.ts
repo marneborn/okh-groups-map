@@ -1,14 +1,19 @@
-const CLIMBING = 'climbing';
-const BACKPACKING = 'backpacking';
+type Types = 'climbing' | 'backpacking';
 
-const TYPES = [
+type TypeDefinition = {
+  key: Types;
+  label: string;
+  color: string;
+}
+
+const TYPES: TypeDefinition[] = [
   {
-    key: CLIMBING,
+    key: 'climbing',
     label: 'Climbing',
     color: 'green',
   },
   {
-    key: BACKPACKING,
+    key: 'backpacking',
     label: 'Backpacking',
     color: 'blue',
   },
@@ -19,19 +24,27 @@ const TYPE_TO_COLOR = TYPES.reduce((accumulator, { key, color }) => ({ ...accumu
 type Group = {
   key: string;
   title: string;
-  type: string;
+  type: Types;
   description: string;
   link: string;
   location: { lat: number, lng: number };
-  color: string;
 };
+
+const G: Group = {
+  key: 'group1',
+  title: 'Group 1',
+  type: 'climbing',
+  description: 'lorem ipsum',
+  link: 'https://facebook.com',
+  location: { lat: 38.24632, lng: -120.332019 },
+}
 
 type GroupWithMarker = Group & { marker: google.maps.Marker }
 const GROUPS: Group[] = [
   {
     key: 'group1',
     title: 'Group 1',
-    type: CLIMBING,
+    type: 'climbing',
     description: 'lorem ipsum',
     link: 'https://facebook.com',
     location: { lat: 38.24632, lng: -120.332019 },
@@ -39,28 +52,24 @@ const GROUPS: Group[] = [
   {
     key: 'group2',
     title: 'Group 2',
-    type: BACKPACKING,
+    type: 'backpacking',
     description: 'lorem ipsum',
     link: 'https://google.com',
     location: { lat: 38.2524232, lng: -120.3344643 },
   },
-].map((group) => ({
-  ...group,
-  color: TYPE_TO_COLOR[group.type] || 'red',
-}));
+];
 
 let infoWindow: google.maps.InfoWindow;
 let map: google.maps.Map;
 let groupsWithMarkers: GroupWithMarker[] = [];
 
 const drawMarkers = (groups) => groups.map((group) => {
+  const color = TYPE_TO_COLOR[group.type] || 'red';
   const marker = new google.maps.Marker({
     position: group.location,
     map,
     title: group.title,
-    icon: {
-      url: `https://maps.google.com/mapfiles/ms/icons/${group.color}-dot.png`,
-    },
+    icon: { url: `https://maps.google.com/mapfiles/ms/icons/${color}-dot.png` },
   });
 
   google.maps.event.addListener(marker, 'mouseover', () => {
