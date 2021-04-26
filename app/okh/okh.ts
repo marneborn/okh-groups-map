@@ -16,7 +16,19 @@ const TYPES = [
 
 const TYPE_TO_COLOR = TYPES.reduce((accumulator, { key, color }) => ({ ...accumulator, [key]: color }), {});
 
-const GROUPS = [
+type Group = {
+  key: string;
+  title: string;
+  type: string;
+  description: string;
+  link: string;
+  location: { lat: number, lng: number };
+  color: string;
+  marker?: google.maps.Marker;
+};
+
+type GroupWithMarker = Group & { marker: google.maps.Marker }
+const GROUPS: Group[] = [
   {
     key: 'group1',
     title: 'Group 1',
@@ -38,54 +50,61 @@ const GROUPS = [
   color: TYPE_TO_COLOR[group.type] || 'red',
 }));
 
-let infoWindow;
-let map;
-const markers = [];
+let infoWindow: google.maps.InfoWindow;
+let map: google.maps.Map;
+let groupsWithMarkers: GroupWithMarker[] = [];
 
-function drawMarkers(groups) {
-  groups.forEach((group) => {
-    const marker = new google.maps.Marker({
-      position: group.location,
-      map,
-      title: group.title,
-      icon: {
-        url: `https://maps.google.com/mapfiles/ms/icons/${group.color}-dot.png`,
-      },
-    });
-
-    google.maps.event.addListener(marker, 'mouseover', () => {
-      infoWindow.setContent(`${group.title}<br />${group.description}`);
-      infoWindow.open(marker.getMap(), marker);
-    });
-
-    google.maps.event.addListener(marker, 'mouseout', () => {
-      infoWindow.close();
-    });
-
-    marker.addListener('click', () => {
-      window.open(group.link, '_blank');
-    });
-
-    group.marker = marker;
+const drawMarkers = (groups) => groups.map((group) => {
+  const marker = new google.maps.Marker({
+    position: group.location,
+    map,
+    title: group.title,
+    icon: {
+      url: `https://maps.google.com/mapfiles/ms/icons/${group.color}-dot.png`,
+    },
   });
-}
 
-function initMap() {
-  map = new google.maps.Map(document.querySelector('#map'), {
+  google.maps.event.addListener(marker, 'mouseover', () => {
+    infoWindow.setContent(`${group.title}<br />${group.description}`);
+    infoWindow.open(marker.getMap(), marker);
+  });
+
+  google.maps.event.addListener(marker, 'mouseout', () => {
+    infoWindow.close();
+  });
+
+  marker.addListener('click', () => {
+    window.open(group.link, '_blank');
+  });
+
+  return {
+    ...group,
+    marker,
+  };
+});
+
+function initMap(): void { // eslint-disable-line @typescript-eslint/no-unused-vars
+  map = new google.maps.Map(document.querySelector('#map') as Element, {
     zoom: 12,
     center: GROUPS[0].location,
   });
   infoWindow = new google.maps.InfoWindow();
-  drawMarkers(GROUPS);
+  groupsWithMarkers = drawMarkers(GROUPS);
 }
 
 function handleMarkerClick(selectedKey) {
-  console.log('selected', selectedKey);
-  GROUPS.forEach(group => group.marker.setMap(((group.type === selectedKey) || (selectedKey === 'all')) ? map : null));
+  groupsWithMarkers.forEach((group) => {
+    if (group.marker) {
+      group.marker.setMap(((group.type === selectedKey) || (selectedKey === 'all')) ? map : null);
+    }
+  });
 }
 
 function addRadioButton({ key, label, isSelected = false }) {
   const wrapper = document.querySelector('#select-group');
+  if (!wrapper) {
+    return;
+  }
   const radioButtonElement = document.createElement('input');
   Object.assign(radioButtonElement, {
     type: 'radio',
