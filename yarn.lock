@@ -291,6 +291,11 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/google.maps@^3.44.3":
+  version "3.44.3"
+  resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.44.3.tgz#f0e1eb9f96576dd86ef06e885a04de4f1c7aa228"
+  integrity sha512-VsVQS3lvl/JFD1uGG0x3EVIbvmLQUEGuJNcd4sPXiPf6oHxUx2EJfQTqI+Liuhe9nLDl0e864NIq2K4WzfdcGQ==
+
 "@types/json-schema@^7.0.3":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
