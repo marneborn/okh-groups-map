@@ -1,0 +1,16 @@
+
+#wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+#map {
+  height: 400px;
+  width: 400px;
+}
+      
+#select-group {
+  height: 400px;
+  width: 400px;
+  background-color: pink;
+}

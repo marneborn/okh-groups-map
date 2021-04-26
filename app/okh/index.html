@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script src="/okh/index.js"></script>
+    <link rel="stylesheet" href="/okh/index.css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="select-group">
+        <input type="radio" id="all" name="selected-group" onclick="handleMarkerClick(this);" value="all" checked="checked">
+        <label for="all">ALL</label><br>
+        <input type="radio" id="group1" name="selected-group" onclick="handleMarkerClick(this);" value="climbing">
+        <label for="selected-group">Group 1</label><br>
+        <input type="radio" id="group2" name="selected-group" onclick="handleMarkerClick(this);" value="backpacking">
+        <label for="selected-group">Group 2</label><br>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <script 
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBn75Yh56Ko0zwNmB56hzkQIjOaUzmxEqg&callback=initMap&libraries=&v=weekly"
+      async
+    >
+    </script>
+
+  </body>
+</html>
