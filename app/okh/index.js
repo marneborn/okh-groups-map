@@ -1,13 +1,26 @@
-const TYPE_TO_COLOR = {
-  climbing: 'green',
-  backpacking: 'blue',
-};
+const CLIMBING = 'climbing';
+const BACKPACKING = 'backpacking';
+
+const TYPES = [
+  { 
+    key: CLIMBING,
+    label: 'Climbing',
+    color: 'green',
+  },
+  { 
+    key: BACKPACKING,
+    label: 'Backpacking',
+    color: 'blue',
+  },
+];
+
+const TYPE_TO_COLOR = TYPES.reduce((acc, { key, color }) => ({ ...acc, [key]: color }), {})
 
 const GROUPS = [
   {
     key: 'group1',
     title: 'Group 1',
-    type: 'climbing',
+    type: CLIMBING,
     description: 'lorem ipsum',
     link: 'https://facebook.com',
     location: { lat: 38.24632, lng: -120.332019 },
@@ -15,7 +28,7 @@ const GROUPS = [
   {
     key: 'group2',
     title: 'Group 2',
-    type: 'backpacking',
+    type: BACKPACKING,
     description: 'lorem ipsum',
     link: 'https://google.com',
     location: { lat: 38.2524232, lng: -120.3344643 },
@@ -67,7 +80,38 @@ function initMap() {
   drawMarkers(GROUPS);
 }
 
-function handleMarkerClick(event) {
-  const key = event.value;
-  GROUPS.forEach(group => group.marker.setMap(((group.type === key) || (key === 'all')) ? map : null))
+function handleMarkerClick(selectedKey) {
+  console.log('selected', selectedKey)
+  GROUPS.forEach(group => group.marker.setMap(((group.type === selectedKey) || (selectedKey === 'all')) ? map : null))
 }
+
+function addRadioButton({ key, label, isSelected = false }) {
+  const wrapper = document.getElementById("select-group");
+  const radioButtonElement = document.createElement("input");
+  Object.assign(radioButtonElement, {
+    type: 'radio',
+    name: 'selected-type',
+    // onclick: 'handleMarkerClick(this);',
+    onclick: () => {
+      handleMarkerClick(key)
+    },
+    value: key,
+    checked: isSelected ? 'checked' : undefined,
+  })
+  const labelElement = document.createElement("label")
+  Object.assign(labelElement, {
+    for: key,
+    innerHTML: label
+  });
+  const brElement = document.createElement('br');
+
+  wrapper.appendChild(radioButtonElement);
+  wrapper.appendChild(labelElement);
+  wrapper.appendChild(brElement);
+}
+
+window.onload = function() {
+  addRadioButton({ key: 'all', label: 'All', isSelected: true });
+  TYPES.forEach(addRadioButton)
+};
+
