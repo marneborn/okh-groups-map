@@ -12,6 +12,8 @@ parserOptions:
 plugins:
   - '@typescript-eslint'
   - unicorn
+ignorePatterns: 
+  - dist/**/*
 settings:
   import/resolver:
     node:

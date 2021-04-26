@@ -4,7 +4,7 @@ import path from 'node:path';
 import okhjs from '../../okh-map/index';
 
 const okhStatics = express.static(path.resolve(__dirname, '..', '..', 'okh-map'));
-console.log(path.resolve(__dirname, '..', '..', 'okh-map'))
+console.log(path.resolve(__dirname, '..', '..', 'okh-map'));
 export default (app: Application): void => {
   app.get('/', (_request, response: Response<string>) => {
     response.send('from router');

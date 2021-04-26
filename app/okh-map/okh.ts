@@ -46,7 +46,6 @@ const GROUPS: Group[] = [
   },
 ].map((group) => ({
   ...group,
-  foo:'bar',
   color: TYPE_TO_COLOR[group.type] || 'red',
 }));
 
