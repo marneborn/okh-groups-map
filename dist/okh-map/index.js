@@ -9,16 +9,14 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var CLIMBING = 'climbing';
-var BACKPACKING = 'backpacking';
 var TYPES = [
     {
-        key: CLIMBING,
+        key: 'climbing',
         label: 'Climbing',
         color: 'green',
     },
     {
-        key: BACKPACKING,
+        key: 'backpacking',
         label: 'Backpacking',
         color: 'blue',
     },
@@ -32,7 +30,7 @@ var GROUPS = [
     {
         key: 'group1',
         title: 'Group 1',
-        type: CLIMBING,
+        type: 'climbing',
         description: 'lorem ipsum',
         link: 'https://facebook.com',
         location: { lat: 38.24632, lng: -120.332019 },
@@ -40,23 +38,22 @@ var GROUPS = [
     {
         key: 'group2',
         title: 'Group 2',
-        type: BACKPACKING,
+        type: 'backpacking',
         description: 'lorem ipsum',
         link: 'https://google.com',
         location: { lat: 38.2524232, lng: -120.3344643 },
     },
-].map(function (group) { return (__assign(__assign({}, group), { foo: 'bar', color: TYPE_TO_COLOR[group.type] || 'red' })); });
+];
 var infoWindow;
 var map;
 var groupsWithMarkers = [];
 var drawMarkers = function (groups) { return groups.map(function (group) {
+    var color = TYPE_TO_COLOR[group.type] || 'red';
     var marker = new google.maps.Marker({
         position: group.location,
         map: map,
         title: group.title,
-        icon: {
-            url: "https://maps.google.com/mapfiles/ms/icons/" + group.color + "-dot.png",
-        },
+        icon: { url: "https://maps.google.com/mapfiles/ms/icons/" + color + "-dot.png" },
     });
     google.maps.event.addListener(marker, 'mouseover', function () {
         infoWindow.setContent(group.title + "<br />" + group.description);

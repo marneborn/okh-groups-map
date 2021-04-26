@@ -30,16 +30,6 @@ type Group = {
   location: { lat: number, lng: number };
 };
 
-const G: Group = {
-  key: 'group1',
-  title: 'Group 1',
-  type: 'climbing',
-  description: 'lorem ipsum',
-  link: 'https://facebook.com',
-  location: { lat: 38.24632, lng: -120.332019 },
-}
-
-type GroupWithMarker = Group & { marker: google.maps.Marker }
 const GROUPS: Group[] = [
   {
     key: 'group1',
@@ -58,6 +48,8 @@ const GROUPS: Group[] = [
     location: { lat: 38.2524232, lng: -120.3344643 },
   },
 ];
+
+type GroupWithMarker = Group & { marker: google.maps.Marker }
 
 let infoWindow: google.maps.InfoWindow;
 let map: google.maps.Map;
