@@ -25,6 +25,7 @@
     "yaml-lint": "^1.2.4"
   },
   "scripts": {
+    "build": "./scripts/build.sh",
     "build:check": "tsc --noEmit",
     "lint": "ERROR_STATUS=0 ; yarn lint:js || ERROR_STATUS=$? ; yarn lint:yaml || ERROR_STATUS=$? ;echo \"=========\"; exit $ERROR_STATUS",
     "lint:js": "eslint . --ext .js,.jsh,.jsx,.ts,.tsx",

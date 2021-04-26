@@ -24,7 +24,6 @@ type Group = {
   link: string;
   location: { lat: number, lng: number };
   color: string;
-  marker?: google.maps.Marker;
 };
 
 type GroupWithMarker = Group & { marker: google.maps.Marker }
@@ -47,6 +46,7 @@ const GROUPS: Group[] = [
   },
 ].map((group) => ({
   ...group,
+  foo:'bar',
   color: TYPE_TO_COLOR[group.type] || 'red',
 }));
 
