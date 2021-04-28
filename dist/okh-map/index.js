@@ -197,32 +197,6 @@ function getTypeCount(type) {
     }
     return GROUPS.filter(function (group) { return group.type === type; }).length;
 }
-function addRadioButton1(_a) {
-    var key = _a.key, label = _a.label, _b = _a.isSelected, isSelected = _b === void 0 ? false : _b;
-    var wrapper = document.querySelector('#select-group');
-    if (!wrapper) {
-        return;
-    }
-    var radioButtonElement = document.createElement('input');
-    Object.assign(radioButtonElement, {
-        type: 'radio',
-        name: 'selected-type',
-        onclick: function () {
-            handleMarkerClick(key);
-        },
-        value: key,
-        checked: isSelected ? 'checked' : undefined,
-    });
-    var labelElement = document.createElement('label');
-    Object.assign(labelElement, {
-        for: key,
-        innerHTML: label + " (" + getTypeCount(key) + ")",
-    });
-    var brElement = document.createElement('br');
-    wrapper.append(radioButtonElement);
-    wrapper.append(labelElement);
-    wrapper.append(brElement);
-}
 function addRadioButton(_a) {
     var key = _a.key, label = _a.label, _b = _a.isSelected, isSelected = _b === void 0 ? false : _b;
     var wrapper = document.querySelector('#select-group');
@@ -247,7 +221,7 @@ function addRadioButton(_a) {
     wrapper.append(brElement);
 }
 window.addEventListener('load', function () {
-    addRadioButton({ key: 'all', label: "All", isSelected: true });
+    addRadioButton({ key: 'all', label: 'All', isSelected: true });
     TYPES.forEach(addRadioButton);
 });
 
