@@ -217,7 +217,7 @@ function getTypeCount(type) {
   return GROUPS.filter(group => group.type === type).length;
 }
 
-function addRadioButton({ key, label, isSelected = false }) {
+function addRadioButton1({ key, label, isSelected = false }) {
   const wrapper = document.querySelector('#select-group');
   if (!wrapper) {
     return;
@@ -242,6 +242,31 @@ function addRadioButton({ key, label, isSelected = false }) {
 
   wrapper.append(radioButtonElement);
   wrapper.append(labelElement);
+  wrapper.append(brElement);
+}
+
+function addRadioButton({ key, label, isSelected = false }) {
+  const wrapper = document.querySelector('#select-group');
+  if (!wrapper) {
+    return;
+  }
+  const radioButtonElement = document.createElement('input');
+  Object.assign(radioButtonElement, {
+    type: 'radio',
+    name: 'selected-type',
+    // onclick: 'handleMarkerClick(this);',
+    onclick: () => {
+      handleMarkerClick(key);
+    },
+    value: key,
+    checked: isSelected ? 'checked' : undefined,
+  });
+  const labelElement = document.createElement('label');
+  const brElement = document.createElement('br');
+
+  wrapper.append(labelElement);
+  labelElement.append(radioButtonElement);
+  labelElement.append(`${label} (${getTypeCount(key)})`);
   wrapper.append(brElement);
 }
 
