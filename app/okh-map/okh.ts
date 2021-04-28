@@ -195,8 +195,8 @@ const drawMarkers = (groups) => groups.map((group) => {
 
 function initMap(): void { // eslint-disable-line @typescript-eslint/no-unused-vars
   map = new google.maps.Map(document.querySelector('#map') as Element, {
-    zoom: 12,
-    center: GROUPS[0].location,
+    zoom: 0,
+    center: { lat: 37.0902, lng: -95.7129 },
   });
   infoWindow = new google.maps.InfoWindow();
   groupsWithMarkers = drawMarkers(GROUPS);
@@ -208,6 +208,13 @@ function handleMarkerClick(selectedKey) {
       group.marker.setMap(((group.type === selectedKey) || (selectedKey === 'all')) ? map : null);
     }
   });
+}
+
+function getTypeCount(type) {
+  if (type === 'all') {
+    return GROUPS.length;
+  }
+  return GROUPS.filter(group => group.type === type).length;
 }
 
 function addRadioButton({ key, label, isSelected = false }) {
@@ -229,7 +236,7 @@ function addRadioButton({ key, label, isSelected = false }) {
   const labelElement = document.createElement('label');
   Object.assign(labelElement, {
     for: key,
-    innerHTML: label,
+    innerHTML: `${label} (${getTypeCount(key)})`,
   });
   const brElement = document.createElement('br');
 
@@ -239,6 +246,6 @@ function addRadioButton({ key, label, isSelected = false }) {
 }
 
 window.addEventListener('load', () => {
-  addRadioButton({ key: 'all', label: 'All', isSelected: true });
+  addRadioButton({ key: 'all', label: `All`, isSelected: true });
   TYPES.forEach(addRadioButton);
 });
