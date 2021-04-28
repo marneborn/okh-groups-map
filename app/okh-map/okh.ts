@@ -187,7 +187,7 @@ const drawMarkers = (groups) => groups.map((group) => {
   });
 
   google.maps.event.addListener(marker, 'mouseover', () => {
-    infoWindow.setContent(`${group.title}<br />${group.description}`);
+    infoWindow.setContent(`${group.title}`);
     infoWindow.open(marker.getMap(), marker);
   });
 
