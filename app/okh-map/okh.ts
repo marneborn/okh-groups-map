@@ -209,6 +209,12 @@ function initMap(): void { // eslint-disable-line @typescript-eslint/no-unused-v
   map = new google.maps.Map(document.querySelector('#okh-group-map #map') as Element, {
     zoom: 0,
     center: { lat: 37.0902, lng: -95.7129 },
+    zoomControl: true,
+    mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false
   });
   infoWindow = new google.maps.InfoWindow();
   groupsWithMarkers = drawMarkers(GROUPS);
