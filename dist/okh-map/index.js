@@ -197,7 +197,7 @@ function getTypeCount(type) {
     }
     return GROUPS.filter(function (group) { return group.type === type; }).length;
 }
-function addRadioButton(_a) {
+function addRadioButton1(_a) {
     var key = _a.key, label = _a.label, _b = _a.isSelected, isSelected = _b === void 0 ? false : _b;
     var wrapper = document.querySelector('#select-group');
     if (!wrapper) {
@@ -221,6 +221,29 @@ function addRadioButton(_a) {
     var brElement = document.createElement('br');
     wrapper.append(radioButtonElement);
     wrapper.append(labelElement);
+    wrapper.append(brElement);
+}
+function addRadioButton(_a) {
+    var key = _a.key, label = _a.label, _b = _a.isSelected, isSelected = _b === void 0 ? false : _b;
+    var wrapper = document.querySelector('#select-group');
+    if (!wrapper) {
+        return;
+    }
+    var radioButtonElement = document.createElement('input');
+    Object.assign(radioButtonElement, {
+        type: 'radio',
+        name: 'selected-type',
+        onclick: function () {
+            handleMarkerClick(key);
+        },
+        value: key,
+        checked: isSelected ? 'checked' : undefined,
+    });
+    var labelElement = document.createElement('label');
+    var brElement = document.createElement('br');
+    wrapper.append(labelElement);
+    labelElement.append(radioButtonElement);
+    labelElement.append(label + " (" + getTypeCount(key) + ")");
     wrapper.append(brElement);
 }
 window.addEventListener('load', function () {
