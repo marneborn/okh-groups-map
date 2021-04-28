@@ -92,7 +92,6 @@ function addRadioButton(_a) {
     Object.assign(radioButtonElement, {
         type: 'radio',
         name: 'selected-type',
-        // onclick: 'handleMarkerClick(this);',
         onclick: function () {
             handleMarkerClick(key);
         },

@@ -7,6 +7,7 @@ const options = {
   target: ts.ScriptTarget.ES5,
   noEmitOnError: true,
   noImplicitAny: true,
+  removeComments: true,
 };
 
 const source = fs.readFileSync(path.resolve(__dirname, 'okh.ts')).toString();
