@@ -229,11 +229,8 @@ function getTypeCount(type) {
   return GROUPS.filter((group) => group.type === type).length;
 }
 
-console.log('qwerty');
 function addRadioButton({ key, label, isSelected = false }) {
-  console.log('qwerty1');
   const wrapper = document.querySelector('#okh-group-map #select-group');
-  console.log('qwerty2', wrapper);
   if (!wrapper) {
     return;
   }
@@ -248,12 +245,10 @@ function addRadioButton({ key, label, isSelected = false }) {
     checked: isSelected ? 'checked' : undefined,
   });
   const labelElement = document.createElement('label');
-  const brElement = document.createElement('br');
 
   wrapper.append(labelElement);
   labelElement.append(radioButtonElement);
   labelElement.append(`${label} (${getTypeCount(key)})`);
-  wrapper.append(brElement);
 }
 
 addRadioButton({ key: 'all', label: 'All', isSelected: true });
