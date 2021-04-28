@@ -205,21 +205,6 @@ const drawMarkers = (groups) => groups.map((group) => {
   };
 });
 
-function initMap(): void { // eslint-disable-line @typescript-eslint/no-unused-vars
-  map = new google.maps.Map(document.querySelector('#okh-group-map #map') as Element, {
-    zoom: 0,
-    center: { lat: 37.0902, lng: -95.7129 },
-    zoomControl: true,
-    mapTypeControl: false,
-    scaleControl: false,
-    streetViewControl: false,
-    rotateControl: false,
-    fullscreenControl: false
-  });
-  infoWindow = new google.maps.InfoWindow();
-  groupsWithMarkers = drawMarkers(GROUPS);
-}
-
 function handleMarkerClick(selectedKey) {
   groupsWithMarkers.forEach((group) => {
     if (group.marker) {
@@ -257,5 +242,19 @@ function addRadioButton({ key, label, isSelected = false }) {
   labelElement.append(`${label} (${getTypeCount(key)})`);
 }
 
-addRadioButton({ key: 'all', label: 'All', isSelected: true });
-TYPES.forEach(addRadioButton);
+function initMap(): void { // eslint-disable-line @typescript-eslint/no-unused-vars
+  map = new google.maps.Map(document.querySelector('#okh-group-map #map') as Element, {
+    zoom: 0,
+    center: { lat: 37.0902, lng: -95.7129 },
+    zoomControl: true,
+    mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false
+  });
+  infoWindow = new google.maps.InfoWindow();
+  groupsWithMarkers = drawMarkers(GROUPS);
+  addRadioButton({ key: 'all', label: 'All', isSelected: true });
+  TYPES.forEach(addRadioButton);
+}
