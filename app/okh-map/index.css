@@ -7,10 +7,12 @@
 #okh-group-map #map {
   height: 400px;
   width: 400px;
+  padding-right: 30px;
 }
       
 #okh-group-map #select-group {
   height: 400px;
-  width: 400px;
+  padding: 10px;
+  padding-right: 30px;
   background-color: pink;
 }
