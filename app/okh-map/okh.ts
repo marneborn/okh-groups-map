@@ -258,3 +258,24 @@ function initMap(): void { // eslint-disable-line @typescript-eslint/no-unused-v
   addRadioButton({ key: 'all', label: 'All', isSelected: true });
   TYPES.forEach(addRadioButton);
 }
+
+const gmapApiKey = 'AIzaSyBn75Yh56Ko0zwNmB56hzkQIjOaUzmxEqg';
+const main = document.querySelector('#okh-group-map');
+
+if (main) {
+  const selectorcontainer = document.createElement('div');
+  selectorcontainer.id = 'select-group';
+
+  const mapcontainer = document.createElement('div');
+  mapcontainer.id = 'map';
+
+  const gmapscript = document.createElement('script');
+  gmapscript.src = `https://maps.googleapis.com/maps/api/js?key=${gmapApiKey}&callback=initMap&libraries=&v=weekly`;
+  gmapscript.async = true;
+
+  main.append(selectorcontainer);
+  main.append(mapcontainer);
+  main.append(gmapscript);
+} else {
+  console.log('missing div with id #okh-group-map');
+}
