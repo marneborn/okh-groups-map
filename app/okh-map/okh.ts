@@ -1,5 +1,12 @@
 // some single line comment
-type Types = 'camping' | 'climbing' | 'cycling' | 'snowsports' | 'travel' | 'hiking=backpacking';
+type Types =
+  | 'camping'
+  | 'climbing'
+  | 'cycling'
+  | 'snowsports'
+  | 'travel'
+  | 'hiking-backpacking'
+  | 'general';
 
 type TypeDefinition = {
   key: Types;
@@ -34,9 +41,14 @@ const TYPES: TypeDefinition[] = [
     color: 'yellow',
   },
   {
-    key: 'hiking=backpacking',
+    key: 'hiking-backpacking',
     label: 'Hiking/Backpacking',
     color: 'blue',
+  },
+  {
+    key: 'general',
+    label: 'General',
+    color: 'black',
   },
 ];
 
@@ -157,6 +169,44 @@ const GROUPS: Group[] = [
     link: 'https://www.facebook.com/groups/littleskierstwincities',
     location: { lat: 44.97062504335736, lng: -93.1845949480072 },
   },
+  {
+    key: 'fbg/kidswhohikenh',
+    title: 'Kids Who Hike NH ',
+    type: 'hiking-backpacking',
+    link: 'https://m.facebook.com/groups/kidswhohikeNH',
+    location: { lat: 43.75688207976632, lng: -71.53771530898311 },
+  },
+  {
+    key: 'fbg/460558788352776',
+    title: 'Moms Adventure Club of Hardin county Tennessee',
+    type: 'general',
+    link: 'https://www.facebook.com/groups/460558788352776/',
+    location: { lat: 35.22445080620592, lng: -88.19748425996403 },
+  },
+  {
+    key: 'fbg/213218650561997',
+    title: 'Rock climbing parents/families of Utah',
+    type: 'climbing',
+    link: 'https://www.facebook.com/groups/213218650561997/',
+    location: { lat: 40.619357457163936, lng: -112.03448065211585 },
+  },
+  {
+    key: '',
+    title: 'Western North Carolina Adventure Kids',
+    type: 'general',
+    link: 'https://m.facebook.com/groups/842618332989042/',
+    location: { lat: 35.780558518305405, lng: -82.08416049369399 },
+  },
+
+  /*
+  {
+    key: '',
+    title: '',
+    type: '',
+    link: '',
+    location: { lat: , lng: },
+  },
+  */
 ];
 
 type GroupWithMarker = Group & { marker: google.maps.Marker }
@@ -277,5 +327,5 @@ if (main) {
   main.append(mapcontainer);
   main.append(gmapscript);
 } else {
-  console.log('missing div with id #okh-group-map');
+  console.log('missing div with id #okh-group-map'); // eslint-disable-line no-console
 }
