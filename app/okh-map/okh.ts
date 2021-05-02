@@ -1,5 +1,6 @@
 // some single line comment
 type Types =
+  | 'all-types'
   | 'camping'
   | 'climbing'
   | 'cycling'
@@ -255,26 +256,27 @@ const drawMarkers = (groups) => groups.map((group) => {
   };
 });
 
-function handleMarkerClick(selectedKey) {
+function handleMarkerClick(selectedKey: Types) {
   groupsWithMarkers.forEach((group) => {
     if (group.marker) {
-      group.marker.setMap(((group.type === selectedKey) || (selectedKey === 'all')) ? map : null);
+      group.marker.setMap(((group.type === selectedKey) || (selectedKey === 'all-types')) ? map : null);
     }
   });
 }
 
-function getTypeCount(type) {
-  if (type === 'all') {
+function getTypeCount(type: Types) {
+  if (type === 'all-types') {
     return GROUPS.length;
   }
   return GROUPS.filter((group) => group.type === type).length;
 }
 
-function addRadioButton({ key, label, isSelected = false }) {
+function addRadioButton({ key, label, isDefaultSelected = false }: TypeDefinition & { isDefaultSelected?: boolean }) {
   const wrapper = document.querySelector('#okh-group-map #select-group');
   if (!wrapper) {
     return;
   }
+
   const radioButtonElement = document.createElement('input');
   Object.assign(radioButtonElement, {
     type: 'radio',
@@ -283,9 +285,10 @@ function addRadioButton({ key, label, isSelected = false }) {
       handleMarkerClick(key);
     },
     value: key,
-    checked: isSelected ? 'checked' : undefined,
+    checked: isDefaultSelected ? 'checked' : undefined,
   });
   const labelElement = document.createElement('label');
+  labelElement.classList.add(key);
 
   wrapper.append(labelElement);
   labelElement.append(radioButtonElement);
@@ -305,7 +308,12 @@ function initMap(): void { // eslint-disable-line @typescript-eslint/no-unused-v
   });
   infoWindow = new google.maps.InfoWindow();
   groupsWithMarkers = drawMarkers(GROUPS);
-  addRadioButton({ key: 'all', label: 'All', isSelected: true });
+  const allType: TypeDefinition = {
+    key: 'all-types', 
+    label: 'All',
+    color: 'black',
+  }
+  addRadioButton({ ...allType, isDefaultSelected: true });
   TYPES.forEach(addRadioButton);
 }
 
@@ -323,9 +331,58 @@ if (main) {
   gmapscript.src = `https://maps.googleapis.com/maps/api/js?key=${gmapApiKey}&callback=initMap&libraries=&v=weekly`;
   gmapscript.async = true;
 
+  // <link rel="stylesheet" href="https://storage.googleapis.com/okh-groups-map/index.css"></link>
+
+  const stylesheet = document.createElement('style');
+  // let dynamicStyle = `
+  // #okh-group-map input[type='radio']:after {
+  //   width: 15px;
+  //   height: 15px;
+  //   border-radius: 15px;
+  //   top: -2px;
+  //   left: -1px;
+  //   position: relative;
+  //   background-color: #d1d3d1;
+  //   content: '';
+  //   display: inline-block;
+  //   visibility: visible;
+  //   border: 2px solid red;
+  // }
+  
+  // #okh-group-map input[type='radio']:checked:after {
+  //   width: 15px;
+  //   height: 15px;
+  //   border-radius: 15px;
+  //   top: -2px;
+  //   left: -1px;
+  //   position: relative;
+  //   background-color: #ffa500;
+  //   content: '';
+  //   display: inline-block;
+  //   visibility: visible;
+  //   border: 2px solid white;
+  // }
+  // `;
+  /*
+type TypeDefinition = {
+  key: Types;
+  label: string;
+  color: string;
+};
+*/
+  const dynamicStyle = TYPES
+    .map((type) => `
+/* Group: ${type.label} */
+#okh-group-map .${type.key} input[type='radio']:after {
+  border-color: ${type.color} !important;
+}`)
+    .join('\n\n')
+  stylesheet.innerHTML = dynamicStyle;
+
   main.append(selectorcontainer);
   main.append(mapcontainer);
   main.append(gmapscript);
+  main.append(stylesheet);
 } else {
   console.log('missing div with id #okh-group-map'); // eslint-disable-line no-console
 }
