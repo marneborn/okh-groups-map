@@ -13,7 +13,6 @@ type TypeDefinition = {
   key: Types;
   label: string;
   color: string;
-  secondaryColor: string;
 }
 
 const TYPES: TypeDefinition[] = [
@@ -21,43 +20,36 @@ const TYPES: TypeDefinition[] = [
     key: 'camping',
     label: 'Camping',
     color: 'green',
-    secondaryColor: 'white',
   },
   {
     key: 'climbing',
     label: 'Climbing',
     color: 'orange',
-    secondaryColor: 'white',
   },
   {
     key: 'cycling',
     label: 'Cycling',
     color: 'purple',
-    secondaryColor: 'white',
   },
   {
     key: 'snowsports',
     label: 'Snowsports',
-    color: 'white',
-    secondaryColor: '#d1dfde',
+    color: '#d1dedf',
   },
   {
     key: 'travel',
     label: 'Travel',
     color: 'yellow',
-    secondaryColor: 'white',
   },
   {
     key: 'hiking-backpacking',
     label: 'Hiking/Backpacking',
     color: 'blue',
-    secondaryColor: 'white',
   },
   {
     key: 'general',
     label: 'General',
     color: 'cyan',
-    secondaryColor: 'white',
   },
 ];
 
@@ -233,7 +225,7 @@ const drawMarkers = (groups) => groups.map((group) => {
     fillOpacity: 1,
     fillColor: color,
     strokeWeight: 1,
-    strokeColor: 'black',
+    strokeColor: 'white',
     scale: 1,
   };
 
@@ -320,7 +312,7 @@ function initMap(): void { // eslint-disable-line @typescript-eslint/no-unused-v
     key: 'all-types',
     label: 'All',
     color: 'black',
-    secondaryColor: 'white',
+
   };
   addRadioButton({ ...allType, isDefaultSelected: true });
   TYPES.forEach(addRadioButton);
@@ -348,11 +340,11 @@ if (main) {
 /* Group: ${type.label} */
 #okh-group-map label.${type.key} input[type='radio']:after {
   border-color: ${type.color};
-  background-color: ${type.secondaryColor};
+  background-color: white;
 }
 
 #okh-group-map label.${type.key} input[type='radio']:checked:after {
-  border-color: ${type.secondaryColor};
+  border-color: white;
   background-color: ${type.color};
 }
 
