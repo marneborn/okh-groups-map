@@ -49,7 +49,7 @@ const TYPES: TypeDefinition[] = [
   {
     key: 'general',
     label: 'General',
-    color: 'black',
+    color: 'cyan',
   },
 ];
 
@@ -334,48 +334,20 @@ if (main) {
   // <link rel="stylesheet" href="https://storage.googleapis.com/okh-groups-map/index.css"></link>
 
   const stylesheet = document.createElement('style');
-  // let dynamicStyle = `
-  // #okh-group-map input[type='radio']:after {
-  //   width: 15px;
-  //   height: 15px;
-  //   border-radius: 15px;
-  //   top: -2px;
-  //   left: -1px;
-  //   position: relative;
-  //   background-color: #d1d3d1;
-  //   content: '';
-  //   display: inline-block;
-  //   visibility: visible;
-  //   border: 2px solid red;
-  // }
-  
-  // #okh-group-map input[type='radio']:checked:after {
-  //   width: 15px;
-  //   height: 15px;
-  //   border-radius: 15px;
-  //   top: -2px;
-  //   left: -1px;
-  //   position: relative;
-  //   background-color: #ffa500;
-  //   content: '';
-  //   display: inline-block;
-  //   visibility: visible;
-  //   border: 2px solid white;
-  // }
-  // `;
-  /*
-type TypeDefinition = {
-  key: Types;
-  label: string;
-  color: string;
-};
-*/
   const dynamicStyle = TYPES
     .map((type) => `
 /* Group: ${type.label} */
-#okh-group-map .${type.key} input[type='radio']:after {
-  border-color: ${type.color} !important;
-}`)
+#okh-group-map label.${type.key} input[type='radio']:after {
+  border-color: ${type.color};
+  background-color: white;
+}
+
+#okh-group-map label.${type.key} input[type='radio']:checked:after {
+  border-color: black;
+  background-color: ${type.color};
+}
+
+`)
     .join('\n\n')
   stylesheet.innerHTML = dynamicStyle;
 

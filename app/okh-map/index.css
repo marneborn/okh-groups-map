@@ -1,28 +1,31 @@
 
 #okh-group-map  {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: start;
   justify-content: center;
 }
 
 #okh-group-map #map {
+  position: relative;
   height: 400px;
-  width: 400px;
-  padding-right: 30px;
+  width: 100%;
+  box-sizing: border-box;
 }
       
 #okh-group-map #select-group {
-  height: 400px;
-  padding: 10px;
-  padding-right: 30px;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 30px;
   background-color: pink;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 #okh-group-map #select-group label {
+  margin-left: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -38,7 +41,7 @@
   top: -2px;
   left: -1px;
   position: relative;
-  background-color: #d1d3d1;
+  background-color: white;
   content: '';
   display: inline-block;
   visibility: visible;
@@ -46,10 +49,6 @@
   border-style: solid;
   border-color: black;
 }
-
-  /* #okh-group-map input[type='radio']:after {
-    border-color: cyan;
-  } */
 
 #okh-group-map input[type='radio']:checked:after {
   width: 15px;
