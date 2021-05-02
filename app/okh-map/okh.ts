@@ -309,10 +309,10 @@ function initMap(): void { // eslint-disable-line @typescript-eslint/no-unused-v
   infoWindow = new google.maps.InfoWindow();
   groupsWithMarkers = drawMarkers(GROUPS);
   const allType: TypeDefinition = {
-    key: 'all-types', 
+    key: 'all-types',
     label: 'All',
     color: 'black',
-  }
+  };
   addRadioButton({ ...allType, isDefaultSelected: true });
   TYPES.forEach(addRadioButton);
 }
@@ -348,7 +348,7 @@ if (main) {
 }
 
 `)
-    .join('\n\n')
+    .join('\n\n');
   stylesheet.innerHTML = dynamicStyle;
 
   main.append(selectorcontainer);
