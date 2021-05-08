@@ -17,26 +17,34 @@
     "@types/log4js": "^2.3.5",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "css-loader": "^5.2.4",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-json": "^2.1.2",
     "eslint-plugin-unicorn": "^31.0.0",
+    "html-webpack-plugin": "^5.3.1",
+    "json5": "^2.2.0",
     "nodemon": "^2.0.7",
     "shellcheck": "^1.0.0",
+    "style-loader": "^2.0.0",
     "webpack-cli": "^4.7.0",
-    "yaml-lint": "^1.2.4"
+    "webpack-dev-server": "^3.11.2",
+    "yaml-lint": "^1.2.4",
+    "yamljs": "^0.3.0"
   },
   "scripts": {
     "build:old": "./scripts/build.sh",
     "build": "webpack",
+    "build:watch": "webpack --watch",
     "build:check": "tsc --noEmit",
+    "start": "webpack serve --open",
     "lint": "ERROR_STATUS=0 ; yarn lint:js || ERROR_STATUS=$? ; yarn lint:yaml || ERROR_STATUS=$? ;  yarn lint:sh || ERROR_STATUS=$? ; echo \"=========\"; exit $ERROR_STATUS",
     "lint:js": "eslint . --ext .js,.jsh,.jsx,.ts,.tsx",
     "lint:js:fix": "yarn lint:js --fix",
     "lint:sh": "ERROR_STATUS=0 ; for file in $(find . -type f \\( -iname \"*.sh\" \\) -not -path './node_modules/*'); do yarn run shellcheck -x $file || ERROR_STATUS=$?; done; exit $ERROR_STATUS",
     "lint:yaml": "yamllint **/*.yml **/*.yaml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml",
-    "start": "node -r ts-node/register app/server/index.ts",
-    "watch": "nodemon --watch 'app/**/*.ts' --ignore 'app/**/*.spec.ts' --exec 'ts-node' app/server/index.ts"
+    "startDeprecated": "node -r ts-node/register app/server/index.ts",
+    "watchDeprecated": "nodemon --watch 'app/**/*.ts' --ignore 'app/**/*.spec.ts' --exec 'ts-node' app/server/index.ts"
   }
 }
