@@ -1,10 +1,8 @@
 import _ from 'lodash';
 import './index.css';
-import datay from './data.yaml';
 import dataj from './data.json5';
 import printMe from './print.js';
 
-console.log('datay', datay)
 console.log('dataj', dataj)
 
 function component() {

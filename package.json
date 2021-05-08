@@ -34,7 +34,6 @@
     "yamljs": "^0.3.0"
   },
   "scripts": {
-    "build:old": "./scripts/build.sh",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "build:check": "tsc --noEmit",
@@ -44,7 +43,5 @@
     "lint:js:fix": "yarn lint:js --fix",
     "lint:sh": "ERROR_STATUS=0 ; for file in $(find . -type f \\( -iname \"*.sh\" \\) -not -path './node_modules/*'); do yarn run shellcheck -x $file || ERROR_STATUS=$?; done; exit $ERROR_STATUS",
     "lint:yaml": "yamllint **/*.yml **/*.yaml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml",
-    "startDeprecated": "node -r ts-node/register app/server/index.ts",
-    "watchDeprecated": "nodemon --watch 'app/**/*.ts' --ignore 'app/**/*.spec.ts' --exec 'ts-node' app/server/index.ts"
   }
 }
