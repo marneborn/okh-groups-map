@@ -1,9 +1,9 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 import './index.css';
-import dataj from './data.json5';
-import printMe from 'print.js';
+// import dataj from './data.json5';
+import printMe from './print';
 
-console.log('dataj', dataj)
+// console.log('dataj', dataj)
 
 function component() {
   const element = document.createElement('div');

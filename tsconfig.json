@@ -1,31 +1,12 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
+    "sourceMap": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "commonjs",
+    "module": "es6",
     "target": "es5",
+    "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
-    "sourceMap": true,
-    "rootDir": "./src",
-    "baseUrl": "./src",
-    "strict": true,
-    "typeRoots": [
-      "./typings",
-      "./node_modules/@types"
-    ],
-     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
-  },
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  }
 }

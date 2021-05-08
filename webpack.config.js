@@ -6,8 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.js',
-    print: './src/print.js',
+    index: './src/index.ts'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -19,11 +18,13 @@ module.exports = {
       title: 'Development',
     }),
   ],
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
+  },
   output: {
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
-    publicPath: '/'
+    clean: true
   },
   module: {
     rules: [
@@ -35,13 +36,6 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.yaml$/i,
-        type: 'json',
-        parser: {
-          parse: yaml.parse,
-        },
       },
       {
         test: /\.json5$/i,
