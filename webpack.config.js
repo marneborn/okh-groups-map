@@ -15,7 +15,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Development',
+      title: 'OKH Groups Map',
+      template: 'src/index.html'
     }),
   ],
   resolve: {
