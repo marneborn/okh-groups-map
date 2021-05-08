@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
-import './index.css';
-import data1 from './data.json5';
-import printMe from './print';
+import '@/index.css';
+import data1 from '@/data.json5';
+import printMe from '@/print';
 
 console.log('datajson5', data1)
 

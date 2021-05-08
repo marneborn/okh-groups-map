@@ -2,6 +2,7 @@ const path = require('path');
 const yaml = require('yamljs');
 const json5 = require('json5');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const tsconfig = require('./tsconfig.json');
 
 module.exports = {
   mode: 'development',
@@ -21,6 +22,9 @@ module.exports = {
   ],
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    },
   },
   output: {
     filename: 'bundle.js',
