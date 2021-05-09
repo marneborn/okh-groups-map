@@ -1,7 +1,4 @@
-okhGlobal = window as unknown as OKHGroupsMapGlobals;
-okhGlobal.okhGroupsMap = okhGlobal.okhGroupsMap || {};
-
-okhGlobal.okhGroupsMap.groups = [
+const groups: OKHMapGroup[] = [
   {
     key: 'fbg/SoCalCampingFamilies',
     title: 'SoCal Camping Families',
@@ -146,3 +143,5 @@ okhGlobal.okhGroupsMap.groups = [
   },
   */
 ];
+
+export default groups;

@@ -7,7 +7,7 @@ const tsconfig = require('./tsconfig.json');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.ts'
+    body: './src/index.ts'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -16,6 +16,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      inject: 'body',
       title: 'OKH Groups Map',
       template: 'src/index.html'
     }),

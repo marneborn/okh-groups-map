@@ -5,6 +5,7 @@
   "author": "Mikael Arneborn <mikael@arneborn.net>",
   "license": "MIT",
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.11.4",
     "express": "^4.17.1",
     "log4js": "^6.3.0",
     "ts-node": "^9.1.1",

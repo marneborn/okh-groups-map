@@ -1,7 +1,4 @@
-okhGlobal = window as unknown as OKHGroupsMapGlobals;
-okhGlobal.okhGroupsMap = okhGlobal.okhGroupsMap || {};
-
-okhGlobal.okhGroupsMap.types = [
+const types: OkhTypeDefinition[] = [
   {
     key: 'all-types',
     label: 'All',
@@ -44,10 +41,11 @@ okhGlobal.okhGroupsMap.types = [
   },
 ];
 
-type ColorMap = Record<Types, string>
-const colorMap = okhGlobal.okhGroupsMap.types.reduce<Partial<ColorMap>>(
-  (accumulator, { key, color }) => ({ ...accumulator, [key]: color }),
+type ColorMap = Record<OKHMapTypes, string>
+const colorMap = types.reduce<Partial<ColorMap>>(
+  (accumulator: any, { key, color }: any) => ({ ...accumulator, [key]: color }),
   {},
 ) as ColorMap;
 
-okhGlobal.okhGroupsMap.typeToColor = (type: Types): string => colorMap[type];
+export default types;
+export const typeToColor = (typeName: OKHMapTypes): string => colorMap[typeName];
