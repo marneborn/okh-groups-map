@@ -110,14 +110,6 @@ const addRadioButtons = () => {
     return;
   }
 
-  const allType: OkhTypeDefinition = {
-    key: 'all-types',
-    label: 'All',
-    color: 'black',
-    isDefaultSelected: true,
-  };
-
-  addRadioButton(allType);
   types.forEach(addRadioButton);
 
   const stylesheet = document.createElement('style');
