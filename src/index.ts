@@ -1,4 +1,4 @@
-import { Loader } from "@googlemaps/js-api-loader"
+import { Loader } from '@googlemaps/js-api-loader';
 
 import '@/index.css';
 import types, { typeToColor } from '@/types';
@@ -11,8 +11,7 @@ let markers: OKHMapMarker[] = [];
 let map: google.maps.Map | null = null;
 let infoWindow: google.maps.InfoWindow | null = null;
 
-
-const drawMarkers = (groups: OKHMapGroup[]) => groups.map((group) => {
+const drawMarkers = () => groups.map((group) => {
   const color = typeToColor(group.type) || 'red';
 
   const markerImage = {
@@ -27,7 +26,7 @@ const drawMarkers = (groups: OKHMapGroup[]) => groups.map((group) => {
 
   const marker = new google.maps.Marker({
     position: group.location,
-    map: map,
+    map,
     title: group.title,
     icon: markerImage,
   });
@@ -100,10 +99,8 @@ const addRadioButton = ({ key, label, isDefaultSelected = false }: OkhTypeDefini
 };
 
 const addMarkers = () => {
-  console.log('trying to add markers', groups)
-  console.log(Boolean(markers), Boolean(groups), Boolean(types), Boolean(map))
   if (markers.length === 0 && map) {
-    markers = drawMarkers(groups);
+    markers = drawMarkers();
   }
 };
 
@@ -112,7 +109,7 @@ const addRadioButtons = () => {
     console.error(new Error('missing div with id #okh-group-map'));
     return;
   }
-  
+
   const allType: OkhTypeDefinition = {
     key: 'all-types',
     label: 'All',
@@ -180,10 +177,9 @@ const initialize = () => {
 
   const loader = new Loader({
     apiKey: gmapApiKey,
-    version: "weekly",
+    version: 'weekly',
   });
   loader.load().then(() => {
-    console.log('here')
     map = new google.maps.Map(mapcontainer, {
       zoom: 1,
       center: { lat: 37.0902, lng: -95.7129 },
@@ -199,7 +195,7 @@ const initialize = () => {
 
     addMarkers();
   });
-  
+
   // const gmapscript = document.createElement('script');
   // gmapscript.src = `https://maps.googleapis.com/maps/api/js?key=${gmapApiKey}&callback=${onLoadGmap.name}&libraries=&v=weekly`;
   // window.initMap = onLoadGmap;

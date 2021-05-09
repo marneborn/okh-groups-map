@@ -42,8 +42,13 @@ const types: OkhTypeDefinition[] = [
 ];
 
 type ColorMap = Record<OKHMapTypes, string>
-const colorMap = types.reduce<Partial<ColorMap>>(
-  (accumulator: any, { key, color }: any) => ({ ...accumulator, [key]: color }),
+type PartialColorMap = Partial<ColorMap>
+type AccumulatorProperty = {
+  key: OKHMapTypes;
+  color: string;
+}
+const colorMap = types.reduce<PartialColorMap>(
+  (accumulator: PartialColorMap, { key, color }: AccumulatorProperty) => ({ ...accumulator, [key]: color }),
   {},
 ) as ColorMap;
 

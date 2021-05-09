@@ -22,6 +22,12 @@ settings:
       moduleDirectory:
       - node_modules
       - app/
+    alias:
+      map:
+      - - "@"
+        - "./src"
+      extensions:
+      - ".ts"
 rules:
   import/extensions:
     - error
@@ -36,14 +42,24 @@ rules:
       ignoreTrailingComments: true
       ignoreStrings: true
       ignoreTemplateLiterals: true
+  no-console:
+    - error
+    - allow:
+      - error
   unicorn/no-array-callback-reference:
     - off
   unicorn/no-array-for-each:
-    - off
+    - off 
   unicorn/no-array-reduce:
     - off
   unicorn/no-null:
     - off
   unicorn/prefer-module:
     - off
-
+overrides:
+  - files:
+    - webpack.config.js
+    rules:
+      "@typescript-eslint/no-var-requires":
+        - off
+  
