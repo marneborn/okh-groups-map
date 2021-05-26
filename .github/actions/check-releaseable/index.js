@@ -8,6 +8,7 @@ const labelToVersion = {
 };
 
 try {
+  console.log(JSON.stringify(github.context, null, 2))
   const labelNames = github.context.pull_request.labels
     .map(label => label.name)
     .filter(labelName => labelToVersion[labelName]);
