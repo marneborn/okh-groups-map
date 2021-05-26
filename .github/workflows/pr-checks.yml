@@ -12,6 +12,11 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install --production=false
+      - name: Check package version
+        uses: technote-space/package-version-check-action@v1
+        with:
+          COMMIT_DISABLED: 1
+      - run: cat package.json
       - run: yarn lint:js
       - run: yarn lint:sh
       - run: yarn lint:yaml
