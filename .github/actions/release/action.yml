@@ -1,15 +1,12 @@
-name: 'Increment the version'
-description: 'Increment the version'
+name: 'Create a release'
+description: 'Create a release'
 inputs:
   GITHUB_TOKEN:
     description: 'Github access token'
     required: true
-  releaseType:
-    description: 'The release type'
-    required: true
-outputs:
   version:
-    description: "The new version number"
+    description: 'The release version'
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'
