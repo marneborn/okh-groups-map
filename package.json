@@ -10,6 +10,7 @@
     "webpack": "^5.36.2"
   },
   "devDependencies": {
+    "@actions/github": "^5.0.0",
     "@types/google.maps": "^3.44.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
