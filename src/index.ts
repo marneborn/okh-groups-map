@@ -74,7 +74,7 @@ function getTypeCount(type: OKHMapTypes) {
 }
 
 const addRadioButton = ({ key, label, isDefaultSelected = false }: OkhTypeDefinition): void => {
-  const wrapper = document.querySelector('#okh-group-map #select-group');
+  const wrapper = document.querySelector('#okh-group-map #controls #select-group ');
   if (!wrapper) {
     console.error(new Error('missing div with id #okh-group-map #select-group'));
     return;
@@ -116,12 +116,12 @@ const addRadioButtons = () => {
   stylesheet.innerHTML = types
     .map((type) => `
 /* Group: ${type.label} */
-#okh-group-map label.${type.key} input[type='radio']:after {
+#okh-group-map #select-group label.${type.key} input[type='radio']:after {
   border-color: ${type.color};
   background-color: white;
 }
 
-#okh-group-map label.${type.key} input[type='radio']:checked:after {
+#okh-group-map #select-group  label.${type.key} input[type='radio']:checked:after {
   border-color: white;
   background-color: ${type.color};
 }
@@ -154,25 +154,57 @@ const addRadioButtons = () => {
 //   addMarkers();
 // }
 
+const createToggleGroup = (): HTMLDivElement => {
+  // based on https://www.w3schools.com/howto/howto_css_switch.asp
+  const toggles = document.createElement('div');
+  toggles.id = 'diversity-toggle';
+
+  const toggleSwitch = document.createElement('label');
+  toggleSwitch.className = 'toggle-switch';
+
+  const sliderInput = document.createElement('input')
+  sliderInput.type = 'checkbox';
+  
+  const sliderSpan = document.createElement('span')
+  sliderSpan.className = 'slider round';
+
+  const text = document.createElement('label');
+  text.append('Diversity Focused');
+  text.className = 'toggle-label';
+  
+  toggleSwitch.append(sliderInput, sliderSpan);
+
+  toggles.append(toggleSwitch, text);
+
+  return toggles;
+}
+
 const initialize = () => {
   if (!main) {
     console.error(new Error('missing div with id #okh-group-map'));
     return;
   }
-  const selectorcontainer = document.createElement('div');
-  selectorcontainer.id = 'select-group';
-  main.append(selectorcontainer);
 
-  const mapcontainer = document.createElement('div');
-  mapcontainer.id = 'map';
-  main.append(mapcontainer);
+  const controlsContainer = document.createElement('div');
+  controlsContainer.id = 'controls';
+  main.append(controlsContainer);
+
+  const groupsSelector = document.createElement('div');
+  groupsSelector.id = 'select-group';
+  controlsContainer.append(groupsSelector);
+
+  controlsContainer.append(createToggleGroup());
+
+  const mapContainer = document.createElement('div');
+  mapContainer.id = 'map';
+  main.append(mapContainer);
 
   const loader = new Loader({
     apiKey: gmapApiKey,
     version: 'weekly',
   });
   loader.load().then(() => {
-    map = new google.maps.Map(mapcontainer, {
+    map = new google.maps.Map(mapContainer, {
       zoom: 1,
       center: { lat: 37.0902, lng: -95.7129 },
       zoomControl: true,
