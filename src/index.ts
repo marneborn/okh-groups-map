@@ -10,8 +10,8 @@ const main = document.querySelector('#okh-group-map');
 let markers: OKHMapMarker[] = [];
 let map: google.maps.Map | null = null;
 let infoWindow: google.maps.InfoWindow | null = null;
-let showOnlyDiversityFocused: boolean = false;
-let selectedType: OKHMapTypes = 'all-types'
+let showOnlyDiversityFocused = false;
+let selectedType: OKHMapTypes = 'all-types';
 
 const createMarkers = () => groups.map((group) => {
   const color = typeToColor(group.type) || 'red';
@@ -60,32 +60,37 @@ const isMarkerVisible = (group: OKHMapGroup) => {
   if (showOnlyDiversityFocused && !group.isDiversityFocused) {
     return false;
   }
-  return (group.type === selectedType) || (selectedType === 'all-types')
-}
+  return (group.type === selectedType) || (selectedType === 'all-types');
+};
 
 const redrawMarkers = () => {
   if (map) {
     markers.forEach((marker) => {
       if (marker.marker) {
-        marker.marker.setMap(isMarkerVisible(marker.group) ?  map : null);
+        marker.marker.setMap(isMarkerVisible(marker.group) ? map : null);
       }
     });
   }
-}
+};
 
 function handleMarkerClick(key: OKHMapTypes) {
   selectedType = key;
   redrawMarkers();
 }
 
-function getGroupsByTypeCount(type: OKHMapTypes) {
-  if (type === 'all-types') {
-    const all = showOnlyDiversityFocused 
-      ? groups.filter(group => group.isDiversityFocused)
+const countThisGroup = (checkType: OKHMapTypes) => (group: OKHMapGroup): boolean => (
+  (group.type === checkType)
+  && (!showOnlyDiversityFocused || (group.isDiversityFocused))
+);
+
+function getGroupsByTypeCount(checkType: OKHMapTypes) {
+  if (checkType === 'all-types') {
+    const all = showOnlyDiversityFocused
+      ? groups.filter((group) => group.isDiversityFocused)
       : groups;
     return all.length;
   }
-  return groups.filter((group) => ((group.type === type) && !showOnlyDiversityFocused || (group.isDiversityFocused) )).length;
+  return groups.filter(countThisGroup(checkType)).length;
 }
 
 const updateRadioButtonLabel = (type: OkhTypeDefinition) => {
@@ -93,11 +98,11 @@ const updateRadioButtonLabel = (type: OkhTypeDefinition) => {
   if (labelElement && labelElement.lastChild) {
     labelElement.lastChild.replaceWith(document.createTextNode(`${type.label} (${getGroupsByTypeCount(type.key)})`));
   }
-}
+};
 
 const updateRadioButtonLabels = () => {
   types.forEach(updateRadioButtonLabel);
-}
+};
 
 const addRadioButton = ({ key, isDefaultSelected = false }: OkhTypeDefinition): void => {
   const wrapper = document.querySelector('#okh-group-map #controls #select-group ');
@@ -174,7 +179,7 @@ const createToggleGroup = (): HTMLDivElement => {
   const toggleSwitch = document.createElement('label');
   toggleSwitch.className = 'toggle-switch';
 
-  const sliderInput = document.createElement('input')
+  const sliderInput = document.createElement('input');
   sliderInput.type = 'checkbox';
 
   Object.assign(sliderInput, {
@@ -184,12 +189,12 @@ const createToggleGroup = (): HTMLDivElement => {
     checked: showOnlyDiversityFocused ? 'checked' : undefined,
   });
 
-  const sliderSpan = document.createElement('span')
+  const sliderSpan = document.createElement('span');
   sliderSpan.className = 'slider round';
 
   const text = document.createElement('label');
-  const num = groups.filter(g => g.isDiversityFocused).length;
-  text.append(`Diversity Focused (${num})`);
+  const number = groups.filter((g) => g.isDiversityFocused).length;
+  text.append(`Diversity Focused (${number})`);
   text.className = 'toggle-label';
 
   toggleSwitch.append(sliderInput, sliderSpan);
@@ -197,7 +202,7 @@ const createToggleGroup = (): HTMLDivElement => {
   toggles.append(toggleSwitch, text);
 
   return toggles;
-}
+};
 
 const initialize = () => {
   if (!main) {
