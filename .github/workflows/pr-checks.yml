@@ -19,7 +19,7 @@ jobs:
         id: get-latest-release
         uses: ./.github/actions/get-latest-release
         with:
-          GITHUB_TOKEN: myToken: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check releaseable
         id: check-releaseable
         uses: ./.github/actions/get-release-type
