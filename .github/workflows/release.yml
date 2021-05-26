@@ -13,8 +13,8 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install --production=false
-      - name: Check package version
-        uses: technote-space/package-version-check-action@v1
-        with:
-          COMMIT_DISABLED: 1
-      - run: cat package.json
+      - name: Check releaseable
+        id: check-releaseable
+        uses: ./.github/actions/get-release-type
+      - name: Get version type
+        run: echo "The selected color is ${{ steps.check-releaseable.outputs.versionType }}"
