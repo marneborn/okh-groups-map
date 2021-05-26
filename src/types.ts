@@ -3,7 +3,6 @@ const types: OkhTypeDefinition[] = [
     key: 'all-types',
     label: 'All',
     color: 'black',
-    isDefaultSelected: true,
   },
   {
     key: 'camping',
