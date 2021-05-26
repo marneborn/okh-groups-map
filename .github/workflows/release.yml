@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - tmp
 jobs:
   run-checks:
     runs-on: ubuntu-latest
