@@ -15,6 +15,11 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install --production=false
+      - name: Blah
+        id: get-latest-release
+        uses: ./.github/actions/get-latest-release
+      - name: Get latest release
+        run: echo "The latest release is ${{ steps.get-latest-release.outputs.version }}"
       - name: Check releaseable
         id: check-releaseable
         uses: ./.github/actions/get-release-type
