@@ -18,9 +18,9 @@ jobs:
       - name: Check releaseable
         id: check-releaseable
         uses: ./.github/actions/get-release-type
-      - name: Get latest release
-        id: get-latest-release
-        uses: ./.github/actions/get-latest-release
+      - name: Get new version
+        id: increment-version
+        uses: ./.github/actions/increment-version
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           releaseType: ${{ steps.check-releaseable.outputs.releaseType }}
