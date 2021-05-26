@@ -1,0 +1,16 @@
+name: pr-checks
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+      - run: npm install --global yarn
+      - run: yarn install --production=false
+      - run: yarn lint:js
+      - run: yarn lint:sh
+      - run: yarn lint:yaml
+      - run: yarn build:check
