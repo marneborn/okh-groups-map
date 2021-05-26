@@ -1,7 +1,13 @@
 name: 'Get release type'
 description: 'Extract the type of version increment'
+inputs:
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
 outputs:
-  nextVersion:
-    description: 'The type of version'
+  version:
+    description: 'The way to increment the version number'
 runs:
+  using: 'node12'
   main: 'index.js'
