@@ -33,3 +33,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           releaseType: ${{ steps.check-releaseable.outputs.releaseType }}
           prNum: ${{ github.event.pull_request.id }}
+      - run: find dist -name "*"
