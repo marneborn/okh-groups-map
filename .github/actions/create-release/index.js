@@ -2,8 +2,6 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const semver = require('semver');
 
-// const { Octokit } = require("@octokit/rest");
-
 const owner = 'marneborn';
 const repo = 'okh-groups-map';
 
@@ -14,14 +12,13 @@ const octokit = github.getOctokit(token)
 
 async function run() {
   try {
-    console.log(JSON.stringify(github.context, null, 2))
     const release = await octokit.rest.repos.getLatestRelease({ owner, repo });
 
     const createReleaseResponse = await octokit.rest.repos.createRelease({
       owner,
       repo,
       tag_name: version,
-      name: new Date().toISOString(),
+      name: `v${version} - new Date().toISOString()`,
       body: `https://github.com/${owner}/${repo}/pull/${prNum}`,
       draft: false,
       prerelease: false,
