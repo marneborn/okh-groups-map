@@ -24,6 +24,7 @@ jobs:
       - run: find .github -name "*"
       - run: cat .github/actions/get-release-label/index.js
       - run: yarn install --production=false
+      - run: cat .github/actions/get-release-label/index.js
       - name: Get Release Label
         uses: ./.github/actions/get-release-label
 
