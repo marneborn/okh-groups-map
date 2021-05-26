@@ -14,13 +14,13 @@ jobs:
       #     GITHUB_CONTEXT: ${{ toJSON(github) }}
       #   run: echo "CONTEXT - $GITHUB_CONTEXT"
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
+        # with:
+        #   ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-node@v1
         with:
           node-version: '16'
-      - run: yarn install --production=false
       - run: find .github -name "*"
+      - run: yarn install --production=false
       - name: Clone Repo
         uses: actions/checkout@v1
       - name: Get Release Label
