@@ -1,0 +1,8 @@
+name: 'Increment the version'
+description: 'Increment the version'
+outputs:
+  version:
+    description: "The new version number"
+runs:
+  using: 'node12'
+  main: 'index.js'
