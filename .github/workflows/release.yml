@@ -26,9 +26,9 @@ jobs:
           releaseType: ${{ steps.check-releaseable.outputs.releaseType }}
       - run: yarn version --no-git-tag-version --new-version "${{ steps.increment-version.outputs.version }}"
       - run: yarn build
-      - name: Release
-        id: release
-        uses: ./.github/actions/release
+      - name: Create release
+        id: create-release
+        uses: ./.github/actions/create-release
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           releaseType: ${{ steps.check-releaseable.outputs.releaseType }}
