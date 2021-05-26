@@ -12,6 +12,12 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install --production=false
+      - run: find .github -name "*"
+      - name: Clone Repo
+        uses: actions/checkout@v1
+      - name: Get Release Label
+        uses: ./.github/actions/get-release-label
+
       - name: Check package version
         uses: technote-space/package-version-check-action@v1
         with:
@@ -21,7 +27,3 @@ jobs:
       - run: yarn lint:sh
       - run: yarn lint:yaml
       - run: yarn build:check
-      - name: Clone Repo
-        uses: actions/checkout@v1
-      - name: Get Release Label
-        uses: ./.github/actions/get-release-label
