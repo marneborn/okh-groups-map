@@ -20,12 +20,6 @@ jobs:
         uses: ./.github/actions/get-latest-release
       - name: Get latest release
         run: echo "The latest release is ${{ steps.get-latest-release.outputs.version }}"
-      - name: Blah2
-        id: get-latest-release2
-        uses: ./.github/actions/get-latest-release2
-      - name: Get latest release2
-        run: echo "The latest release2 is ${{ steps.get-latest-release2.outputs.version }}"
-
       - name: Check releaseable
         id: check-releaseable
         uses: ./.github/actions/get-release-type

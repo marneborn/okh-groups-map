@@ -1,5 +1,5 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: 'Get latest release'
+description: 'Get the latest release'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
@@ -8,12 +8,6 @@ inputs:
 outputs:
   version:
     description: "The version number"
-    value: ${{ steps.get-version.outputs.version }}
 runs:
-  using: "composite"
-  steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
-      shell: bash
-    - id: get-version
-      run: echo "::set-output name=version::$(echo "1.2.3")"
-      shell: bash
+  using: 'node12'
+  main: 'index.js'
