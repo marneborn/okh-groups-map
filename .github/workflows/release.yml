@@ -1,6 +1,6 @@
-name: pr-checks
+name: release
 on:
-  pull_request:
+  push:
     branches:
       - main
       - tmp
@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-node@v1
         with:
           node-version: '16'
@@ -20,7 +18,3 @@ jobs:
         uses: ./.github/actions/get-release-type
       - name: Get version type
         run: echo "The selected color is ${{ steps.check-releaseable.outputs.versionType }}"
-      - run: yarn lint:js
-      - run: yarn lint:sh
-      - run: yarn lint:yaml
-      - run: yarn build:check
