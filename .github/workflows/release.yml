@@ -31,6 +31,7 @@ jobs:
         uses: ./.github/actions/create-release
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          releaseType: ${{ steps.check-releaseable.outputs.releaseType }}
+          version: ${{ steps.increment-version.outputs.version }}
           prNum: ${{ github.event.pull_request.id }}
+     
       - run: find dist -name "*"
