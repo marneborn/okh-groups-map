@@ -15,7 +15,10 @@ jobs:
           node-version: '16'
       - run: yarn install --production=false
       - name: Check releaseable
+        id: check-releaseable
         uses: ./.github/actions/get-release-type
+      - name: Get version type
+        run: echo "The selected color is ${{ steps.check-releaseable.outputs.versionType }}"
       - run: yarn lint:js
       - run: yarn lint:sh
       - run: yarn lint:yaml
