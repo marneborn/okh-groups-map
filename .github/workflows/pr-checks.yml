@@ -24,8 +24,6 @@ jobs:
       - run: find .github -name "*"
       - run: cat .github/actions/get-release-label/index.js
       - run: yarn install --production=false
-      - name: Clone Repo
-        uses: actions/checkout@v1
       - name: Get Release Label
         uses: ./.github/actions/get-release-label
 
