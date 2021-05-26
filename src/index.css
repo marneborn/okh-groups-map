@@ -138,7 +138,6 @@ input:checked + .slider:before {
   transform: translateX(12px);
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 10px;
 }
