@@ -7,6 +7,9 @@ inputs:
   version:
     description: 'The release version'
     required: true
+  pr-num:
+    description: 'The pr num'
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'

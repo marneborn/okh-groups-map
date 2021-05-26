@@ -7,7 +7,7 @@ const semver = require('semver');
 const owner = 'marneborn';
 const repo = 'okh-groups-map';
 
-const version = core.getInput('versionn');
+const version = core.getInput('version');
 const prNum = core.getInput('pr-num');
 const token = core.getInput('GITHUB_TOKEN');
 const octokit = github.getOctokit(token)
@@ -22,13 +22,13 @@ async function run() {
       repo,
       tag_name: version,
       name: new Date().toISOString(),
-      body: `https://github.com/${owner}/${repo}/pull/$prNum",
+      body: `https://github.com/${owner}/${repo}/pull/${prNum}`,
       draft,
       prerelease,
       target_commitish: commitish
     });
 
-    console.log('latest release: ', console.log(createReleaseResponse, null, 2));
+    console.log('new release: ', console.log(createReleaseResponse, null, 2));
   }
   catch (error) {
     core.setFailed(error.message);
