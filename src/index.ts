@@ -10,8 +10,10 @@ const main = document.querySelector('#okh-group-map');
 let markers: OKHMapMarker[] = [];
 let map: google.maps.Map | null = null;
 let infoWindow: google.maps.InfoWindow | null = null;
+let showOnlyDiversityFocused: boolean = false;
+let selectedType: OKHMapTypes = 'all-types'
 
-const drawMarkers = () => groups.map((group) => {
+const createMarkers = () => groups.map((group) => {
   const color = typeToColor(group.type) || 'red';
 
   const markerImage = {
@@ -26,7 +28,7 @@ const drawMarkers = () => groups.map((group) => {
 
   const marker = new google.maps.Marker({
     position: group.location,
-    map,
+    map: null,
     title: group.title,
     icon: markerImage,
   });
@@ -54,16 +56,26 @@ const drawMarkers = () => groups.map((group) => {
   };
 });
 
-function handleMarkerClick(selectedKey: OKHMapTypes) {
+const isMarkerVisible = (group: OKHMapGroup) => {
+  if (showOnlyDiversityFocused && !group.isDiversityFocused) {
+    return false;
+  }
+  return (group.type === selectedType) || (selectedType === 'all-types')
+}
+
+const redrawMarkers = () => {
   if (map) {
     markers.forEach((marker) => {
       if (marker.marker) {
-        marker.marker.setMap(((marker.group.type === selectedKey) || (selectedKey === 'all-types'))
-          ? map
-          : null);
+        marker.marker.setMap(isMarkerVisible(marker.group) ?  map : null);
       }
     });
   }
+}
+
+function handleMarkerClick(key: OKHMapTypes) {
+  selectedType = key;
+  redrawMarkers();
 }
 
 function getTypeCount(type: OKHMapTypes) {
@@ -71,6 +83,10 @@ function getTypeCount(type: OKHMapTypes) {
     return groups.length;
   }
   return groups.filter((group) => group.type === type).length;
+}
+
+const updateGroupCounts = () => {
+  
 }
 
 const addRadioButton = ({ key, label, isDefaultSelected = false }: OkhTypeDefinition): void => {
@@ -100,7 +116,8 @@ const addRadioButton = ({ key, label, isDefaultSelected = false }: OkhTypeDefini
 
 const addMarkers = () => {
   if (markers.length === 0 && map) {
-    markers = drawMarkers();
+    markers = createMarkers();
+    redrawMarkers();
   }
 };
 
@@ -131,28 +148,11 @@ const addRadioButtons = () => {
   main.append(stylesheet);
 };
 
-// function onLoadGmap(): void {
-//   const parent = document.querySelector('#okh-group-map #map');
-//   if (!parent) {
-//     console.error(new Error('missing div with id #okh-group-map #map'));
-//     return;
-//   }
-
-//   map = new google.maps.Map(parent, {
-//     zoom: 1,
-//     center: { lat: 37.0902, lng: -95.7129 },
-//     zoomControl: true,
-//     mapTypeControl: false,
-//     scaleControl: false,
-//     streetViewControl: false,
-//     rotateControl: false,
-//     fullscreenControl: false,
-//   });
-
-//   infoWindow = new google.maps.InfoWindow();
-
-//   addMarkers();
-// }
+const handleDiversityToggle = () => {
+  showOnlyDiversityFocused = !showOnlyDiversityFocused;
+  updateGroupCounts();
+  redrawMarkers();
+};
 
 const createToggleGroup = (): HTMLDivElement => {
   // based on https://www.w3schools.com/howto/howto_css_switch.asp
@@ -164,14 +164,21 @@ const createToggleGroup = (): HTMLDivElement => {
 
   const sliderInput = document.createElement('input')
   sliderInput.type = 'checkbox';
-  
+
+  Object.assign(sliderInput, {
+    type: 'checkbox',
+    name: 'selected-type',
+    onclick: handleDiversityToggle,
+    checked: showOnlyDiversityFocused ? 'checked' : undefined,
+  });
+
   const sliderSpan = document.createElement('span')
   sliderSpan.className = 'slider round';
 
   const text = document.createElement('label');
   text.append('Diversity Focused');
   text.className = 'toggle-label';
-  
+
   toggleSwitch.append(sliderInput, sliderSpan);
 
   toggles.append(toggleSwitch, text);
