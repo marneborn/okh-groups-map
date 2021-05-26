@@ -15,19 +15,15 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install --production=false
-      - name: Blah
+      - name: Get latest release
         id: get-latest-release
         uses: ./.github/actions/get-latest-release
-      - name: Get latest release
-        run: echo "The latest release is ${{ steps.get-latest-release.outputs.version }}"
       - name: Check releaseable
         id: check-releaseable
         uses: ./.github/actions/get-release-type
-      - name: Get version type
-        run: echo "The selected color is ${{ steps.check-releaseable.outputs.versionType }}"
       - run: yarn version --no-git-tag-version --new-version "${{ steps.get-latest-release.outputs.version }}"
       - run: yarn version --no-git-tag-version --new-version "${{ steps.check-releaseable.outputs.versionType }}"
-      - run: cat package.json
+      - run
       - run: yarn lint:js
       - run: yarn lint:sh
       - run: yarn lint:yaml

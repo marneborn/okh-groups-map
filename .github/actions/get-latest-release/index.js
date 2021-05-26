@@ -1,14 +1,16 @@
 const core = require('@actions/core');
-const { Octokit } = require("@octokit/rest");
+const { GitHub, context } = require('@actions/github');
+
+// const { Octokit } = require("@octokit/rest");
 
 const owner = 'marneborn';
 const repo = 'okh-groups-map';
 
-const octokit = new Octokit()
+const github = new GitHub()
 
 async function run() {
   try {
-    const release = await octokit.rest.repos.getLatestRelease({ owner, repo });
+    const release = await github.repos.getLatestRelease({ owner, repo });
     console.log('latest release: ', release.data.tag_name);
     core.setOutput('version', release.data.tag_name);
   }
