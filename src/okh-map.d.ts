@@ -21,6 +21,7 @@ type OKHMapGroup = {
   type: OKHMapTypes;
   description?: string;
   link: string;
+  isDiversityFocused: boolean;
   location: { lat: number, lng: number };
 };
 

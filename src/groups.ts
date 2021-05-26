@@ -4,6 +4,7 @@ const groups: OKHMapGroup[] = [
     title: 'SoCal Camping Families',
     type: 'camping',
     link: 'https://www.facebook.com/groups/SoCalCampingFamilies/',
+    isDiversityFocused: false,
     location: { lat: 34.026828449740044, lng: -118.01665771132564 },
   },
   {
@@ -11,6 +12,7 @@ const groups: OKHMapGroup[] = [
     title: 'Camping With Kids Australia',
     type: 'camping',
     link: 'https://www.facebook.com/groups/1443578215674448/',
+    isDiversityFocused: false,
     location: { lat: -26.1295137658768, lng: 134.0490238204947 },
   },
   {
@@ -18,6 +20,7 @@ const groups: OKHMapGroup[] = [
     title: 'Camping with Kids - Michigan',
     type: 'camping',
     link: 'https://www.facebook.com/groups/290454152007828/',
+    isDiversityFocused: false,
     location: { lat: 43.56490692376151, lng: -85.32633949592457 },
   },
   {
@@ -25,6 +28,7 @@ const groups: OKHMapGroup[] = [
     title: 'Michigan camping with kids',
     type: 'camping',
     link: 'https://www.facebook.com/groups/618757821806922/',
+    isDiversityFocused: false,
     location: { lat: 43.25841185352083, lng: -84.92381438105467 },
   },
   {
@@ -32,6 +36,7 @@ const groups: OKHMapGroup[] = [
     title: 'Houston Area Camping With Kids',
     type: 'camping',
     link: 'https://www.facebook.com/groups/2784264118470265/',
+    isDiversityFocused: false,
     location: { lat: 29.790955365578725, lng: -95.39594764797539 },
   },
   {
@@ -39,6 +44,7 @@ const groups: OKHMapGroup[] = [
     title: 'Camping with children / family camping UK',
     type: 'camping',
     link: 'https://www.facebook.com/groups/427403721126033/',
+    isDiversityFocused: false,
     location: { lat: 52.61366979578046, lng: -1.4030364384592091 },
   },
   {
@@ -46,6 +52,7 @@ const groups: OKHMapGroup[] = [
     title: 'Florida camping with kids',
     type: 'camping',
     link: 'https://www.facebook.com/groups/387843808713958/',
+    isDiversityFocused: false,
     location: { lat: 28.412612145221107, lng: -81.86446384095603 },
   },
   {
@@ -53,6 +60,7 @@ const groups: OKHMapGroup[] = [
     title: 'Mums who Caravan and Camp',
     type: 'camping',
     link: 'https://www.facebook.com/groups/mwcac/',
+    isDiversityFocused: false,
     location: { lat: -28.2033017002211, lng: 135.40313489836436 },
   },
   {
@@ -60,6 +68,7 @@ const groups: OKHMapGroup[] = [
     title: 'Victoria\'s camping with kids',
     type: 'camping',
     link: 'https://www.facebook.com/groups/1962193577363629/',
+    isDiversityFocused: false,
     location: { lat: -37.317887309598326, lng: 144.1626981292932 },
   },
   {
@@ -67,6 +76,7 @@ const groups: OKHMapGroup[] = [
     title: 'Camping with Kids in France',
     type: 'camping',
     link: 'https://www.facebook.com/groups/2215859585359325/',
+    isDiversityFocused: false,
     location: { lat: 46.3340139390375, lng: 2.226752896952243 },
   },
   {
@@ -74,6 +84,7 @@ const groups: OKHMapGroup[] = [
     title: 'Family Cycling UK',
     type: 'cycling',
     link: 'https://www.facebook.com/groups/641173915998956/',
+    isDiversityFocused: false,
     location: { lat: 51.982579655925385, lng: -1.686496497915583 },
   },
   {
@@ -81,6 +92,7 @@ const groups: OKHMapGroup[] = [
     title: 'San Francisco Family Biking',
     type: 'cycling',
     link: 'https://www.facebook.com/groups/368596593337075/',
+    isDiversityFocused: false,
     location: { lat: 37.760799457734244, lng: -122.44446277149525 },
   },
   {
@@ -88,6 +100,7 @@ const groups: OKHMapGroup[] = [
     title: 'Cycling UK Forum: Family Cycling section',
     type: 'cycling',
     link: 'https://forum.cyclinguk.org/viewforum.php?f=54&sid=fe00a394b67f969293aeb61a3f0dc959',
+    isDiversityFocused: false,
     location: { lat: 52.28142758741014, lng: -2.416497117454137 },
   },
   {
@@ -95,6 +108,7 @@ const groups: OKHMapGroup[] = [
     title: 'Skiing with kids in Switzerland',
     type: 'snowsports',
     link: 'https://www.facebook.com/groups/246431686287133/',
+    isDiversityFocused: false,
     location: { lat: 46.95560166978635, lng: 8.204990834503349 },
   },
   {
@@ -102,6 +116,7 @@ const groups: OKHMapGroup[] = [
     title: 'Little Skiers - Twin Cities',
     type: 'snowsports',
     link: 'https://www.facebook.com/groups/littleskierstwincities',
+    isDiversityFocused: false,
     location: { lat: 44.97062504335736, lng: -93.1845949480072 },
   },
   {
@@ -109,6 +124,7 @@ const groups: OKHMapGroup[] = [
     title: 'Kids Who Hike NH ',
     type: 'hiking-backpacking',
     link: 'https://m.facebook.com/groups/kidswhohikeNH',
+    isDiversityFocused: false,
     location: { lat: 43.75688207976632, lng: -71.53771530898311 },
   },
   {
@@ -116,6 +132,7 @@ const groups: OKHMapGroup[] = [
     title: 'Moms Adventure Club of Hardin county Tennessee',
     type: 'general',
     link: 'https://www.facebook.com/groups/460558788352776/',
+    isDiversityFocused: false,
     location: { lat: 35.22445080620592, lng: -88.19748425996403 },
   },
   {
@@ -123,6 +140,7 @@ const groups: OKHMapGroup[] = [
     title: 'Rock climbing parents/families of Utah',
     type: 'climbing',
     link: 'https://www.facebook.com/groups/213218650561997/',
+    isDiversityFocused: false,
     location: { lat: 40.619357457163936, lng: -112.03448065211585 },
   },
   {
@@ -130,6 +148,7 @@ const groups: OKHMapGroup[] = [
     title: 'Western North Carolina Adventure Kids',
     type: 'general',
     link: 'https://m.facebook.com/groups/842618332989042/',
+    isDiversityFocused: false,
     location: { lat: 35.780558518305405, lng: -82.08416049369399 },
   },
 
