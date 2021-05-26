@@ -15,7 +15,7 @@ jobs:
           node-version: '16'
       - run: yarn install --production=false
       - name: Check releaseable
-        uses: ./.github/actions/check-releaseable
+        uses: ./.github/actions/get-release-type
       - run: yarn lint:js
       - run: yarn lint:sh
       - run: yarn lint:yaml
