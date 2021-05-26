@@ -1,0 +1,13 @@
+name: 'Get latest release'
+description: 'Get the latest release'
+inputs:
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs:
+  version:
+    description: "The version number"
+runs:
+  using: 'node16'
+  main: 'index.js'
