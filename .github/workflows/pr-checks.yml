@@ -3,7 +3,6 @@ on:
   pull_request:
     branches:
       - main
-      - tmp
 jobs:
   run-checks:
     runs-on: ubuntu-latest
