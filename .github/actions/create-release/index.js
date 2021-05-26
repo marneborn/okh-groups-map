@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const semver = require('semver');
 const path = require('path');
 const fs = require('fs');
 
@@ -24,8 +23,6 @@ async function run() {
       prerelease: false,
       target_commitish: 'main',
     });
-
-    const release = createReleaseResponse.data;
 
     const {
       data: { id: releaseId, html_url: htmlUrl, upload_url: uploadUrl },
@@ -56,7 +53,6 @@ async function run() {
       },
     );
     core.debug(`Added ${assetName}: ${uploadResponse.data.browser_download_url}`);
-    return uploadResponse.data.browser_download_url;
   } catch (error) {
     core.setFailed(error.message);
   }

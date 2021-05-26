@@ -74,5 +74,18 @@ overrides:
     rules:
       unicorn/prefer-module:
         - off
+  - files:
+    - ".github/**/*.js"
+    plugins:
+      - unicorn
+    extends:
+      - airbnb-base
+      - plugin:unicorn/recommended
+    rules:
+      import/no-extraneous-dependencies:
+        - off
+      unicorn/prefer-module:
+        - off
+      
 
   

@@ -9,15 +9,15 @@ const labelToVersion = {
 
 try {
   const labelNames = github.context.payload.pull_request.labels
-    .map(label => label.name)
-    .filter(labelName => labelToVersion[labelName]);
+    .map((label) => label.name)
+    .filter((labelName) => labelToVersion[labelName]);
 
   if (labelNames.length === 0) {
     core.setFailed('No labels set');
   } else if (labelNames.length > 1) {
     core.setFailed(`Multiple labels set: ${labelNames.join(', ')}`);
   } else {
-    console.log('release-type:', labelToVersion[labelNames[0]]);
+    core.debug('release-type:', labelToVersion[labelNames[0]]);
     core.setOutput('releaseType', labelToVersion[labelNames[0]]);
   }
 } catch (error) {
