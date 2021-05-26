@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ github.event.pull_request.head.sha }}"
-      - run: echo "${{ github.event }}"
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+      # - run: echo "${{ github.event }}"
+      # - name: Dump GitHub context
+      #   env:
+      #     GITHUB_CONTEXT: ${{ toJSON(github) }}
+      #   run: echo "CONTEXT - $GITHUB_CONTEXT"
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
