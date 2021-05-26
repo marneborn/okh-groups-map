@@ -1,6 +1,6 @@
 {
   "name": "okh-groups-map",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "index.js",
   "author": "Mikael Arneborn <mikael@arneborn.net>",
   "license": "MIT",
@@ -10,6 +10,8 @@
     "webpack": "^5.36.2"
   },
   "devDependencies": {
+    "@actions/core": "^1.3.0",
+    "@actions/github": "^5.0.0",
     "@types/google.maps": "^3.44.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
@@ -21,6 +23,7 @@
     "eslint-plugin-json": "^2.1.2",
     "eslint-plugin-unicorn": "^31.0.0",
     "html-webpack-plugin": "^5.3.1",
+    "semver": "^7.3.5",
     "shellcheck": "^1.0.0",
     "style-loader": "^2.0.0",
     "ts-loader": "^9.1.2",
@@ -34,7 +37,7 @@
     "build:check": "tsc --noEmit",
     "start": "webpack serve --open",
     "lint": "ERROR_STATUS=0 ; yarn lint:js || ERROR_STATUS=$? ; yarn lint:yaml || ERROR_STATUS=$? ;  yarn lint:sh || ERROR_STATUS=$? ; echo \"=========\"; exit $ERROR_STATUS",
-    "lint:js": "eslint . --ext .js,.jsh,.jsx,.ts,.tsx",
+    "lint:js": "eslint . .github --ext .js,.jsh,.jsx,.ts,.tsx",
     "lint:js:fix": "yarn lint:js --fix",
     "lint:sh": "ERROR_STATUS=0 ; for file in $(find . -type f \\( -iname \"*.sh\" \\) -not -path './node_modules/*'); do yarn run shellcheck -x $file || ERROR_STATUS=$?; done; exit $ERROR_STATUS",
     "lint:yaml": "yamllint **/*.yml **/*.yaml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml"

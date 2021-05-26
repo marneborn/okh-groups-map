@@ -1,0 +1,35 @@
+name: release
+on:
+  pull_request:
+    types: [closed]
+    branches: 
+      - main
+jobs:
+  run-checks:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+      - run: yarn install --production=false
+      - name: Check releaseable
+        id: check-releaseable
+        uses: ./.github/actions/get-release-type
+      - name: Get new version
+        id: increment-version
+        uses: ./.github/actions/increment-version
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          releaseType: ${{ steps.check-releaseable.outputs.releaseType }}
+      - run: yarn version --no-git-tag-version --new-version "${{ steps.increment-version.outputs.version }}"
+      - run: yarn build
+      - name: Create release
+        id: create-release
+        uses: ./.github/actions/create-release
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          version: ${{ steps.increment-version.outputs.version }}
+          pr-num: ${{ github.event.pull_request.id }}
+      - run: find dist -name "*"
