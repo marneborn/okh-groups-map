@@ -7,32 +7,15 @@ jobs:
   run-checks:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ github.event.pull_request.head.sha }}"
-      # - run: echo "${{ github.event }}"
-      # - name: Dump GitHub context
-      #   env:
-      #     GITHUB_CONTEXT: ${{ toJSON(github) }}
-      #   run: echo "CONTEXT - $GITHUB_CONTEXT"
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - run: cat .github/actions/get-release-label/index.js
       - uses: actions/setup-node@v1
         with:
           node-version: '16'
-      - run: cat .github/actions/get-release-label/index.js
-      - run: find .github -name "*"
-      - run: cat .github/actions/get-release-label/index.js
       - run: yarn install --production=false
-      - run: cat .github/actions/get-release-label/index.js
       - name: Get Release Label
-        uses: ./.github/actions/get-release-label
-
-      # - name: Check package version
-        # uses: technote-space/package-version-check-action@v1
-        # with:
-        #   COMMIT_DISABLED: 1
-      - run: cat package.json
+        uses: ./.github/actions/check-releaseable
       - run: yarn lint:js
       - run: yarn lint:sh
       - run: yarn lint:yaml
