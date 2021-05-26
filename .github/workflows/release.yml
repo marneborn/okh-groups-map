@@ -31,5 +31,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ steps.increment-version.outputs.version }}
-          pr-num: ${{ github.event.pull_request.id }}
+          pr-num: ${{ github.event.pull_request.number }}
       - run: find dist -name "*"
