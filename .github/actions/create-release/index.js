@@ -23,9 +23,9 @@ async function run() {
       tag_name: version,
       name: new Date().toISOString(),
       body: `https://github.com/${owner}/${repo}/pull/${prNum}`,
-      draft,
-      prerelease,
-      target_commitish: commitish
+      draft: false,
+      prerelease: false,
+      target_commitish: 'main'
     });
 
     console.log('new release: ', console.log(createReleaseResponse, null, 2));
