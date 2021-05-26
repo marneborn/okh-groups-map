@@ -15,14 +15,15 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install --production=false
-      - name: Get relesae type
-        id: get-releaseable
+      - name: Check releaseable
+        id: check-releaseable
         uses: ./.github/actions/get-release-type
-      - name: Get latest release
-        id: get-latest-release
-        uses: ./.github/actions/get-latest-release
+      - name: Get new version
+        id: increment-version
+        uses: ./.github/actions/increment-version
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          releaseType: ${{ steps.check-releaseable.outputs.versionType }}
-      - run: yarn version --no-git-tag-version --new-version "${{ steps.get-latest-release.outputs.version }}"
-      - run: yarn version --no-git-tag-version --new-version "${{ steps.check-releaseable.outputs.versionType }}"
+          releaseType: ${{ steps.check-releaseable.outputs.releaseType }}
+      - run: yarn version --no-git-tag-version --new-version "${{ steps.increment-version.outputs.version }}"
+      - run: yarn build
+      
