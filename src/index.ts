@@ -188,7 +188,8 @@ const createToggleGroup = (): HTMLDivElement => {
   sliderSpan.className = 'slider round';
 
   const text = document.createElement('label');
-  text.append('Diversity Focused');
+  const num = groups.filter(g => g.isDiversityFocused).length;
+  text.append(`Diversity Focused (${num})`);
   text.className = 'toggle-label';
 
   toggleSwitch.append(sliderInput, sliderSpan);

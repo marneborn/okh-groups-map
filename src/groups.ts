@@ -144,12 +144,20 @@ const groups: OKHMapGroup[] = [
     location: { lat: 40.619357457163936, lng: -112.03448065211585 },
   },
   {
-    key: '',
+    key: 'fbg/842618332989042',
     title: 'Western North Carolina Adventure Kids',
     type: 'general',
     link: 'https://m.facebook.com/groups/842618332989042/',
     isDiversityFocused: false,
     location: { lat: 35.780558518305405, lng: -82.08416049369399 },
+  },
+  {
+    key: 'soul-track-family-programs',
+    title: 'Soul Trak Outdoors',
+    type: 'general',
+    link: 'https://soultrak.com/family-programs/',
+    isDiversityFocused: true,
+    location: { lat: 38.90874437415947, lng: -77.01533382448275 },
   },
 
   /*
@@ -158,6 +166,7 @@ const groups: OKHMapGroup[] = [
     title: '',
     type: '',
     link: '',
+    isDiversityFocused: false,
     location: { lat: , lng: },
   },
   */
