@@ -7,11 +7,9 @@ const fs = require('fs');
 const owner = 'marneborn';
 const repo = 'okh-groups-map';
 
-const version = '0.1.8';
-const prNumber = '9';
-console.log(JSON.stringify(process.env, null, 2));
-const token = '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';
-console.log('token', token);
+const version = core.getInput('version');
+const prNumber = core.getInput('pr-num');
+const token = core.getInput('GITHUB_TOKEN');
 const octokit = github.getOctokit(token);
 
 async function run() {
