@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install --production=false
-      - name: Get Release Label
+      - name: Check releaseable
         uses: ./.github/actions/check-releaseable
       - run: yarn lint:js
       - run: yarn lint:sh

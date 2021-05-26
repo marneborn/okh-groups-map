@@ -1,6 +1,7 @@
-name: 'Check releaseable'
-description: 'Make sure that this PR is ready to be released'
-inputs:
+name: 'Get release type'
+description: 'Extract the type of version increment'
 outputs:
+  nextVersion:
+    description: 'The type of version'
 runs:
   main: 'index.js'
