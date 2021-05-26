@@ -25,6 +25,9 @@ jobs:
         uses: ./.github/actions/get-release-type
       - name: Get version type
         run: echo "The selected color is ${{ steps.check-releaseable.outputs.versionType }}"
+      - run: yarn version --no-git-tag-version --new-version ${{ steps.get-latest-release.outputs.version }}"
+      - run: yarn version --no-git-tag-version --new-version ${{ steps.check-releaseable.outputs.versionType }}"
+      - run: cat package.json
       - run: yarn lint:js
       - run: yarn lint:sh
       - run: yarn lint:yaml
