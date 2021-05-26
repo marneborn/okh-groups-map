@@ -20,7 +20,7 @@ try {
   } else if (labelNames.length > 1) {
     core.setFailed(`Multiple labels set: ${labelNames.join(', ')}`);
   } else {
-    console.log('release type is: ', labelToVersion[labelNames[0]]);
+    console.log('dsfdsfds', labelToVersion[labelNames[0]]);
     core.setOutput('versionType', labelToVersion[labelNames[0]]);
   }
 } catch (error) {
