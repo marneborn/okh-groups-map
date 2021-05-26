@@ -9,43 +9,36 @@ const types: OkhTypeDefinition[] = [
     key: 'camping',
     label: 'Camping',
     color: 'green',
-    isDefaultSelected: false,
   },
   {
     key: 'climbing',
     label: 'Climbing',
     color: 'orange',
-    isDefaultSelected: false,
   },
   {
     key: 'cycling',
     label: 'Cycling',
     color: 'purple',
-    isDefaultSelected: false,
   },
   {
     key: 'snowsports',
     label: 'Snowsports',
     color: '#d1dedf',
-    isDefaultSelected: false,
   },
   {
     key: 'travel',
     label: 'Travel',
     color: 'yellow',
-    isDefaultSelected: false,
   },
   {
     key: 'hiking-backpacking',
     label: 'Hiking/Backpacking',
     color: 'blue',
-    isDefaultSelected: false,
   },
   {
     key: 'general',
     label: 'General',
     color: 'cyan',
-    isDefaultSelected: false,
   },
 ];
 
