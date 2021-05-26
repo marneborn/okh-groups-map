@@ -19,7 +19,7 @@ try {
     core.setFailed(`Multiple labels set: ${labelNames.join(', ')}`);
   } else {
     console.log('release-type:', labelToVersion[labelNames[0]]);
-    core.setOutput('versionType', labelToVersion[labelNames[0]]);
+    core.setOutput('releaseType', labelToVersion[labelNames[0]]);
   }
 } catch (error) {
   core.setFailed(error.message);

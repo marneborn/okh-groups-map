@@ -15,8 +15,14 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install --production=false
-      - name: Check releaseable
-        id: check-releaseable
+      - name: Get relesae type
+        id: get-releaseable
         uses: ./.github/actions/get-release-type
-      - name: Get version type
-        run: echo "The selected color is ${{ steps.check-releaseable.outputs.versionType }}"
+      - name: Get latest release
+        id: get-latest-release
+        uses: ./.github/actions/get-latest-release
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          releaseType: ${{ steps.check-releaseable.outputs.versionType }}
+      - run: yarn version --no-git-tag-version --new-version "${{ steps.get-latest-release.outputs.version }}"
+      - run: yarn version --no-git-tag-version --new-version "${{ steps.check-releaseable.outputs.versionType }}"
