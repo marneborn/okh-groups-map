@@ -23,7 +23,6 @@ jobs:
         uses: ./.github/actions/get-release-type
       - run: yarn version --no-git-tag-version --new-version "${{ steps.get-latest-release.outputs.version }}"
       - run: yarn version --no-git-tag-version --new-version "${{ steps.check-releaseable.outputs.versionType }}"
-      - run
       - run: yarn lint:js
       - run: yarn lint:sh
       - run: yarn lint:yaml
