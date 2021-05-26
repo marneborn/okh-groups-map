@@ -21,5 +21,7 @@ jobs:
       - run: yarn lint:sh
       - run: yarn lint:yaml
       - run: yarn build:check
+      - name: Clone Repo
+        uses: actions/checkout@v1
       - name: Get Release Label
         uses: ./.github/actions/get-release-label
